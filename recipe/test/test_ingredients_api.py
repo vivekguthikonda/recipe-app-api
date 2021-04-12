@@ -26,7 +26,7 @@ class PublicIngredientsApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
          
 
-class PivateIngredientApiTests(TestCase):
+class PrivateIngredientApiTests(TestCase):
     """Test ingredients can be retrieved by authorized user"""
 
     def setUp(self):
@@ -38,7 +38,7 @@ class PivateIngredientApiTests(TestCase):
         self.client.force_authenticate(self.user)
 
     def test_retrieve_ingredient_list(self):
-        """test retireving a list of ingredients"""
+        """test retrieving a list of ingredients"""
         Ingredient.objects.create(user=self.user, name = 'Kale')
         Ingredient.objects.create(user = self.user, name = "Salt")
 
@@ -79,7 +79,7 @@ class PivateIngredientApiTests(TestCase):
         res = self.client.post(INGREDIENTS_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        
+
 
 
 
